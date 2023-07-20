@@ -1,7 +1,5 @@
-from flask import Blueprint
-
 #Importar rutas
-from user import users_bp
+from routes.user import users_bp
 
 all_bp = []
 
