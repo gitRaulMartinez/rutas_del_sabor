@@ -1,5 +1,5 @@
 from firebase_admin import db
-from models.user import User
+from src.models.user import User
 
 def addUser(user):
     # Agregar el usuario a la base de datos

@@ -1,5 +1,5 @@
 #Importar rutas
-from routes.user import users_bp
+from src.routes.user import users_bp
 
 all_bp = []
 

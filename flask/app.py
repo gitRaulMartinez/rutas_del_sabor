@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
-from config.config import FLASK_HOST, FLASK_PORT, FLASK_DEBUG
-from firebase.firebase_connection import initialize_firebase
-from routes.routes import all_bp
+from src.config.config import FLASK_HOST, FLASK_PORT, FLASK_DEBUG
+from src.firebase.firebase_connection import initialize_firebase
+from src.routes.routes import all_bp
 
 initialize_firebase()
 

@@ -1,9 +1,7 @@
 from flask import Blueprint, jsonify, request
-
 import uuid
-
-from models.user import User
-import controllers.user as userController
+from src.models.user import User
+import src.controllers.user as userController
 
 
 # Creamos un Blueprint para las rutas de usuarios
