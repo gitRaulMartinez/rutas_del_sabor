@@ -10,5 +10,6 @@ Proyecto Integrador / Mil Programadores Salteños - Python
   pip install firebase_admin
   pip install PyJWT
   pip install python-dotenv
+  pip install bcrypt
 ```
 
