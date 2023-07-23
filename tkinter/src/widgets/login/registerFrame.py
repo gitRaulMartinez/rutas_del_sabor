@@ -67,7 +67,7 @@ class RegisterFrame(customtkinter.CTkFrame):
             response = auth_service.register(self.entry_username.get(), self.entry_password.get(), self.entry_name.get(), self.entry_lastname.get())
             if response is not None:
                 if response['status'] == 200:
-                    self.parent.open_login()
+                    self.parent.open_login(action="success register")
                     self.reset()
                     self.delete_errors()
                 else:

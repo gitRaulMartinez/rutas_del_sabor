@@ -2,10 +2,13 @@ import customtkinter
 
 from src.widgets.login.loginFrame import LoginFrame
 from src.widgets.login.registerFrame import RegisterFrame
+from src.widgets.notifications.notification import Notification
 
 from src.views.dashboard import Dashboard
 
 from src.assets.images import path_images
+
+
 
 class Login(customtkinter.CTk):
     def __init__(self):
@@ -21,6 +24,7 @@ class Login(customtkinter.CTk):
         self.register_frame = RegisterFrame(self)
 
         self.dashboard = None
+        self.notification = None
     
     def head(self):
         self.title("Rutas del sabor")
@@ -60,12 +64,22 @@ class Login(customtkinter.CTk):
         self.login_frame.grid_forget()
         self.register_frame.grid(row=1, column=1, padx=0, pady=0, sticky="nsew")
 
-    def open_login(self):
+    def open_login(self,action=None):
         self.register_frame.grid_forget()
         self.login_frame.grid(row=1, column=1, padx=0, pady=0, sticky="nsew")
 
+        if action is not None:
+            if action == 'success register':
+                self.open_notification("¡ Registrado con exito !")
+        
     def open_dashboard(self):
         if self.dashboard is None or not self.dashboard.winfo_exists():
             self.dashboard = Dashboard(self)
         else:
             self.dashboard.focus()
+
+    def open_notification(self, message):
+        if self.notification is None or not self.notification.winfo_exists():
+            self.notification = Notification(self, message)
+        else:
+            self.notification.focus()
