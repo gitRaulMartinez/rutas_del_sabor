@@ -26,10 +26,14 @@ def register():
     # Crear una instancia del modelo Usuario
     new_user = User(uid, username, password, name, lastname)
     try:
-        userController.addUser(new_user)
-        return jsonify({'mensaje': 'Usuario creado exitosamente.'}), 200
+        user = userController.getUserByUsername(username)
+        if user is None:
+            userController.addUser(new_user)
+            return jsonify({'message': 'Usuario creado exitosamente.','status': 200}), 200
+        else:
+            return jsonify({'message': 'Usuario ya existente.','status': 409}), 409
     except Exception as e:
-        return jsonify({'mensaje': f'Error al agregar el usuario {e}'}), 500
+        return jsonify({'message': f'Error al agregar el usuario {e}','status': 500}), 500
     
 @users_bp.route('/login', methods=['POST'])
 def login():
@@ -37,16 +41,16 @@ def login():
     try:
         user = userController.getUserByUsername(data.get('username'))
         if user is None:
-            return  jsonify({'mensaje': 'Este usuario no existe'}), 401
+            return  jsonify({'message': 'Este usuario no existe','status': 401}), 401
         else:
             if check_password(data.get('password'),user.password):
                 token = generate_token(user)
                 return jsonify({'token': token})
             else:
-                return  jsonify({'mensaje': 'La contraseña no es valida'}), 401
+                return  jsonify({'message': 'La contraseña no es valida','status': 401}), 401
 
     except Exception as e:
-        return jsonify({'mensaje': f'Error al querer loguear el usuario {e}'}), 500
+        return jsonify({'message': f'Error al querer loguear el usuario {e}','status': 500}), 500
     
 # Ruta GET para obtener todos los usuarios
 @users_bp.route('/users', methods=['GET'])
@@ -56,4 +60,4 @@ def get_users():
         users = userController.getUsers()
         return jsonify([user.__dict__ for user in users]), 200
     except Exception as e:
-        return jsonify({'mensaje': f'Error al agregar el usuario {e}'}), 500
+        return jsonify({'message': f'Error al agregar el usuario {e}'}), 500
