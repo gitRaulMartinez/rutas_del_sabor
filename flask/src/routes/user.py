@@ -1,7 +1,7 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, g
 
-from src.models.user import User
 import src.controllers.user as userController
+from src.auth.auth import auth
 
 # Creamos un Blueprint para las rutas de usuarios
 users_bp = Blueprint('users', __name__, url_prefix='/users')
@@ -16,7 +16,22 @@ def get_users():
         return jsonify({'message': f'Error al agregar el usuario {e}'}), 500
     
 # Ruta GET para obtener un usuario por id
+@users_bp.route('/myuser', methods=['GET'])
+@auth
+def get_my_user():
+    try:
+        user = userController.getUserByUsername(g.user.get('username'))  
+        del user.password
+        if user is not None:
+            return jsonify(user.__dict__), 200
+        else:
+            return jsonify({'message': 'Usuario no existe.','status': 404}), 404
+    except Exception as e:
+        return jsonify({'message': f'Error al buscar usuario {e}'}), 500
+    
+# Ruta GET para obtener un usuario por id
 @users_bp.route('/<string:id_usuario>', methods=['GET'])
+@auth
 def get_user(id_usuario):
     try:
         user = userController.getUser(id_usuario)

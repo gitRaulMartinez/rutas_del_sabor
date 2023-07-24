@@ -7,7 +7,7 @@ def login(username,password):
         'username': username,
         'password': password
     }
-    response = requests.post(f"{URL_SERVER}/user/login", json=data)
+    response = requests.post(f"{URL_SERVER}/auth/login", json=data)
 
     if response.status_code != 500:
         return response.json()
@@ -22,7 +22,7 @@ def register(username,password,name,lastname):
         'name': name,
         'lastname': lastname
     }
-    response = requests.post(f"{URL_SERVER}/user/register", json=data)
+    response = requests.post(f"{URL_SERVER}/auth/register", json=data)
 
     if response.status_code != 500:
         return response.json()

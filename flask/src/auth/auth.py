@@ -7,8 +7,9 @@ import jwt
 def auth(f):
     @wraps(f)
     def decorador(*args, **kwargs):
-        token = request.headers.get('Authorization').split()[1]
-        if not token:
+        header = request.headers.get('Authorization')
+        token = header.split()[1] if header is not None else None
+        if token is None:
             return jsonify({'mensaje': 'Token no proporcionado'}), 401
         try:
             # Verificar y decodificar el token JWT con la clave secreta

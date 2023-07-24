@@ -1,4 +1,7 @@
 import customtkinter as ctk
+import threading
+
+import src.utils.colors as color
 
 from src.widgets.nav.navFrame import NavFrame
 from src.widgets.head.headFrame import HeadFrame
@@ -6,6 +9,7 @@ from src.widgets.dashboard.homeFrame import HomeFrame
 from src.widgets.dashboard.activityFrame import ActivityFrame
 from src.widgets.dashboard.planningFrame import PlanningFrame
 from src.widgets.dashboard.mapFrame import MapFrame
+from src.widgets.dashboard.loadingFrame import LoadingFrame
 
 class Dashboard(ctk.CTkToplevel):
     def __init__(self,parent):
@@ -14,7 +18,7 @@ class Dashboard(ctk.CTkToplevel):
 
         self.head()
         self.position()
-        self.structure()
+        self.structure_loading()
         self.body()
 
         self.protocol("WM_DELETE_WINDOW", self.close_window)
@@ -36,7 +40,13 @@ class Dashboard(ctk.CTkToplevel):
         # Colocar la ventana en el centro de la pantalla
         self.geometry(f"{window_width}x{window_height}+{x_position}+{y_position}")
 
+    def structure_loading(self):
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure(0, weight=1)
+    
     def structure(self):
+        self.grid_columnconfigure(0, weight=0)
+        self.grid_rowconfigure(0, weight=0)
         self.grid_columnconfigure(1, weight=1)
         self.grid_rowconfigure(1, weight=1)
 
@@ -44,14 +54,45 @@ class Dashboard(ctk.CTkToplevel):
         self.parent.destroy()
 
     def body(self):
-        self.nav_frame = NavFrame(self)    
+        self.loading_frame = LoadingFrame(self)
+        self.loading_frame.grid(row=0, column=0, sticky="nswe")
+        thread = threading.Thread(target=self.load_nav)
+        thread.start()
+
+    def load_nav(self):
+        self.nav_frame = NavFrame(self)   
+        self.loading_frame.label_title.configure(text="Cargando Usuario...")
+        thread = threading.Thread(target=self.load_head)
+        thread.start()
+    
+    def load_head(self):
         self.head_frame = HeadFrame(self)
+        self.loading_frame.label_title.configure(text="Cargando Inicio...")
+        thread = threading.Thread(target=self.load_home)
+        thread.start()
 
-        self.home_frame = HomeFrame(self)       
+    def load_home(self):
+        self.home_frame = HomeFrame(self)
+        self.loading_frame.label_title.configure(text="Cargando Actividades...")
+        thread = threading.Thread(target=self.load_activity)
+        thread.start()
+
+    def load_activity(self):
         self.activity_frame = ActivityFrame(self)
-        self.planning_frame = PlanningFrame(self)
-        self.map_frame = MapFrame(self)
+        self.loading_frame.label_title.configure(text="Cargando Rutas...")
+        thread = threading.Thread(target=self.load_planning)
+        thread.start()
 
+    def load_planning(self):
+        self.planning_frame = PlanningFrame(self)
+        self.loading_frame.label_title.configure(text="Cargando Destinos...")
+        thread = threading.Thread(target=self.load_map)
+        thread.start()
+
+    def load_map(self):
+        self.map_frame = MapFrame(self)
+        self.loading_frame.grid_forget()
+        self.structure()
         self.nav_frame.grid(row=0, column=0, rowspan=2, padx=0, pady=0, sticky="sn")
         self.head_frame.grid(row=0, column=1, padx=0, pady=0, sticky="ew")
         self.home_frame.grid(row=1, column=1, padx=0, pady=0, sticky="snew")

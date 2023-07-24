@@ -11,7 +11,6 @@ from src.views.dashboard import Dashboard
 
 from PIL import Image
 from src.utils.images import get_image_path
-from src.utils.fonts import get_font_path
 
 class Login(ctk.CTk):
     def __init__(self):
