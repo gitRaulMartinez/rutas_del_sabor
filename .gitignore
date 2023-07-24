@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 
 /flask/src/firebase/credentials/*.json
+
+/tkinter/src/localstorage/*.json
