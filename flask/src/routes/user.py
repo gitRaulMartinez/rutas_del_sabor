@@ -54,7 +54,6 @@ def login():
     
 # Ruta GET para obtener todos los usuarios
 @users_bp.route('/users', methods=['GET'])
-@auth
 def get_users():
     try:
         users = userController.getUsers()

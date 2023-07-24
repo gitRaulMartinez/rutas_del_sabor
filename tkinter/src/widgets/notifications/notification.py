@@ -1,8 +1,7 @@
 import customtkinter as ctk
 
 from PIL import Image
-
-from src.assets.images import path_images
+from src.utils.images import get_image_path
 
 class Notification(ctk.CTkToplevel):
     def __init__(self,parent, message):
@@ -13,7 +12,7 @@ class Notification(ctk.CTkToplevel):
         self.position()
         self.structure()
 
-        self.image_check = ctk.CTkImage(Image.open(path_images("check.png")),size=(25,25))
+        self.image_check = ctk.CTkImage(Image.open(get_image_path("check.png")),size=(25,25))
 
         self.label_image = ctk.CTkLabel(self,image=self.image_check, text="", fg_color="transparent")
         self.label_image.grid(row=0, column=0, padx=(20,10), pady=10)

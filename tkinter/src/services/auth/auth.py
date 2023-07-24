@@ -1,12 +1,13 @@
 import requests
-import json
+
+from src.environments.environments import URL_SERVER
 
 def login(username,password):
     data = {
         'username': username,
         'password': password
     }
-    response = requests.post('http://localhost:5000/user/login', json=data)
+    response = requests.post(f"{URL_SERVER}/user/login", json=data)
 
     if response.status_code != 500:
         return response.json()
@@ -21,7 +22,7 @@ def register(username,password,name,lastname):
         'name': name,
         'lastname': lastname
     }
-    response = requests.post('http://localhost:5000/user/register', json=data)
+    response = requests.post(f"{URL_SERVER}/user/register", json=data)
 
     if response.status_code != 500:
         return response.json()
