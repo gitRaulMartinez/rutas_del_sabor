@@ -13,7 +13,7 @@ def get_users():
         users = userController.getUsers()
         return jsonify([user.__dict__ for user in users]), 200
     except Exception as e:
-        return jsonify({'message': f'Error al agregar el usuario {e}'}), 500
+        return jsonify({'message': f'Error al obtener todos los usuarios {e}'}), 500
     
 # Ruta GET para obtener un usuario por id
 @users_bp.route('/myuser', methods=['GET'])
