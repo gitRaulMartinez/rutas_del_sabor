@@ -30,3 +30,9 @@ def text_normal_font():
 
 def text_small_font():
     return ctk.CTkFont(family="Open Sans",size=14,weight="normal")
+
+def text_normal_bold_fond():
+    return ctk.CTkFont(family="Open Sans",size=16,weight="bold")
+
+def text_small_bold_fond():
+    return ctk.CTkFont(family="Open Sans",size=15,weight="bold")

@@ -15,7 +15,7 @@ class LoadingFrame(ctk.CTkFrame):
         self.rowconfigure((0,3),weight=1)
         self.columnconfigure((0,2),weight=1)
         self.load_bg()
-        self.label_title = ctk.CTkLabel(self, text="Cargando imagen...", padx=5, pady=5, fg_color="transparent", text_color="#607D8B", font=self.title_font)
+        self.label_title = ctk.CTkLabel(self, text="Cargando usuario...", padx=5, pady=5, fg_color="transparent", text_color="#607D8B", font=self.title_font)
         self.label_title.grid(row=1, column=1, padx=10, pady=10)
         self.progressbar = ctk.CTkProgressBar(self, width=500, height=20, corner_radius=100, fg_color=color.BG_LIGHT, progress_color=color.PRIMARY)
         self.progressbar.grid(row=2, column=1, padx=10, pady=10)

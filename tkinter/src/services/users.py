@@ -1,13 +1,13 @@
-import requests
+import json
+from src.request.user import UserData
+from src.models.user import User
+from src.utils.session import get_token
 
-from src.environments.environments import URL_SERVER
+class UserService:
+    def __init__(self):
+        self.user_data = UserData()
 
-def get_my_user(token):
-    headers = { 'Authorization': 'Bearer '+token }
-    response = requests.get(f"{URL_SERVER}/users/myuser",headers=headers)
-
-    if response.status_code != 500:
-        return response.json()
-    else:
-        print(response.json()['message'])
-        return None
+    def get_user(self):
+        response_user = self.user_data.get_data(get_token())
+        user = User(**response_user)
+        return user

@@ -4,7 +4,6 @@ import threading
 import src.utils.colors as color
 
 from src.widgets.nav.navFrame import NavFrame
-from src.widgets.head.headFrame import HeadFrame
 from src.widgets.dashboard.homeFrame import HomeFrame
 from src.widgets.dashboard.activityFrame import ActivityFrame
 from src.widgets.dashboard.planningFrame import PlanningFrame
@@ -46,9 +45,8 @@ class Dashboard(ctk.CTkToplevel):
     
     def structure(self):
         self.grid_columnconfigure(0, weight=0)
-        self.grid_rowconfigure(0, weight=0)
+        self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
-        self.grid_rowconfigure(1, weight=1)
 
     def close_window(self):
         self.parent.destroy()
@@ -61,13 +59,7 @@ class Dashboard(ctk.CTkToplevel):
 
     def load_nav(self):
         self.nav_frame = NavFrame(self)   
-        self.loading_frame.label_title.configure(text="Cargando Usuario...")
-        thread = threading.Thread(target=self.load_head)
-        thread.start()
-    
-    def load_head(self):
-        self.head_frame = HeadFrame(self)
-        self.loading_frame.label_title.configure(text="Cargando Inicio...")
+        self.loading_frame.label_title.configure(text="Cargando Destinos...")
         thread = threading.Thread(target=self.load_home)
         thread.start()
 
@@ -94,27 +86,26 @@ class Dashboard(ctk.CTkToplevel):
         self.loading_frame.grid_forget()
         self.structure()
         self.nav_frame.grid(row=0, column=0, rowspan=2, padx=0, pady=0, sticky="sn")
-        self.head_frame.grid(row=0, column=1, padx=0, pady=0, sticky="ew")
-        self.home_frame.grid(row=1, column=1, padx=0, pady=0, sticky="snew")
+        self.home_frame.grid(row=0, column=1, padx=0, pady=0, sticky="snew")
 
     def logout(self):
         self.parent.show_window()
 
     def switch_frame(self, frame):
         if frame == "home":
-            self.home_frame.grid(row=1, column=1, padx=0, pady=0, sticky="snew")
+            self.home_frame.grid(row=0, column=1, padx=0, pady=0, sticky="snew")
         else:
             self.home_frame.grid_forget()
         if frame == "activity":
-            self.activity_frame.grid(row=1, column=1, padx=0, pady=0, sticky="snew")
+            self.activity_frame.grid(row=0, column=1, padx=0, pady=0, sticky="snew")
         else:
             self.activity_frame.grid_forget()
         if frame == "planning":
-            self.planning_frame.grid(row=1, column=1, padx=0, pady=0, sticky="snew")
+            self.planning_frame.grid(row=0, column=1, padx=0, pady=0, sticky="snew")
         else:
             self.planning_frame.grid_forget()
         if frame == "map":
-            self.map_frame.grid(row=1, column=1, padx=0, pady=0, sticky="snew")
+            self.map_frame.grid(row=0, column=1, padx=0, pady=0, sticky="snew")
         else:
             self.map_frame.grid_forget()
 

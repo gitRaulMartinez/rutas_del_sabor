@@ -6,11 +6,14 @@ from src.utils.images import get_image_path
 import src.utils.colors as color
 import src.utils.fonts as font
 
+from src.services.users import UserService
+
 class NavFrame(ctk.CTkFrame):
     def __init__(self, parent):
         super().__init__(parent, corner_radius=0, fg_color=color.NAV)
         self.parent = parent
         self.load_fonts()
+        self.load_user()
         self.load_images()
         self.current_frame = "home"
 
@@ -38,8 +41,10 @@ class NavFrame(ctk.CTkFrame):
     def actions(self):
         self.grid_rowconfigure(5, weight=1)
 
+        self.label_title = ctk.CTkLabel(self, text=self.user.name+" "+self.user.lastname, padx=5, pady=5, text_color=color.TEXT, fg_color="transparent", font=self.logo_font,image=self.user_icon, compound="left")
+        self.label_title.grid(row=6, column=0, padx=15, pady=5, sticky="ew")
         self.logout_button = ctk.CTkButton(self, height=20, text="Cerrar Sesión", border_spacing=10, text_color=color.TEXT_BUTTON, fg_color=color.SECONDARY,hover_color=color.HOVER_SECONDARY, command=self.logout, font=self.button_font, image=self.logout_icon, compound="left")
-        self.logout_button.grid(row=6, column=0,padx=15,pady=(0,15), sticky="ews")
+        self.logout_button.grid(row=7, column=0,padx=15,pady=(0,15), sticky="ews")
 
     def load_images(self):
         self.logo_icon = ctk.CTkImage(Image.open(get_image_path("logo.png")),size=(30,30))
@@ -52,8 +57,12 @@ class NavFrame(ctk.CTkFrame):
         self.planning_light_icon = ctk.CTkImage(Image.open(get_image_path("plan_light.png")),size=(20,20))
         self.map_light_icon = ctk.CTkImage(Image.open(get_image_path("map_light.png")),size=(20,20))
         self.logout_icon = ctk.CTkImage(Image.open(get_image_path("logout_light.png")),size=(15,15))
-        
+        self.user_icon = ctk.CTkImage(Image.open(get_image_path("user.png")),size=(15,15))
 
+    def load_user(self):
+        self.user_service = UserService()
+        self.user = self.user_service.get_user()
+        
     def switch_frame(self,frame):
         self.home_button.configure(fg_color=color.PRIMARY if frame == "home" else "transparent",text_color=color.TEXT_LIGHT if frame == "home" else color.TEXT,hover_color=color.HOVER_PRIMARY if frame == "home" else color.HOVER_NAV,image=self.home_light_icon if frame == "home" else self.home_icon)
         self.activity_button.configure(fg_color=color.PRIMARY if frame == "activity" else "transparent",text_color=color.TEXT_LIGHT if frame == "activity" else color.TEXT,hover_color=color.HOVER_PRIMARY if frame == "activity" else color.HOVER_NAV,image=self.activity_light_icon if frame == "activity" else self.activity_icon)

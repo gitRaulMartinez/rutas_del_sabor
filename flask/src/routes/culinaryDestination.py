@@ -32,7 +32,7 @@ def create_culinary_destination():
         return jsonify({'message': f'Error al destino culinario {e}','status': 500}), 500
     
 @culinary_destination_bp.route('/', methods=['GET'])
-def get_users():
+def get_culinary_destinations():
     try:
         culinary_destinations = culinaryDestinationController.getCulinaryDestinations()
         return jsonify([culinary_destination.__dict__ for culinary_destination in culinary_destinations]), 200
