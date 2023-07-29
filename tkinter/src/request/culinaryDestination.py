@@ -12,7 +12,7 @@ class CulinaryDestinationData:
 
     def get_data(self):
         if self._data is None:
-            response = requests.get(f"{URL_SERVER}/culinary_destinations")
+            response = requests.get(f"{URL_SERVER}/culinary_destinations/")
             if response.status_code != 500:
                 self._data = response.json()
             else:

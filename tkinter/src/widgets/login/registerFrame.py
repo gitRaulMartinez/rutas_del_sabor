@@ -61,11 +61,12 @@ class RegisterFrame(ctk.CTkFrame):
         self.button_login.grid(row=15, column=0, padx=15, pady=(5,15))
 
     def submit(self):
-        self.button_register.configure(text="Cargando...",state="disabled",fg_color=color.BUTTON_DISABLED, text_color_disabled=color.TEXT_BUTTON)
-        thread = threading.Thread(target=self.register_request)
-        thread.start()
+        result = self.form_control()
+        if result:
+            self.button_register.configure(text="Cargando...",state="disabled",fg_color=color.BUTTON_DISABLED, text_color_disabled=color.TEXT_BUTTON)
+            thread = threading.Thread(target=self.register_request)
+            thread.start()
         
-
     def register_request(self):
         result = self.form_control()
         if result:

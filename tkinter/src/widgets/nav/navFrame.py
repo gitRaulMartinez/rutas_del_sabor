@@ -10,7 +10,7 @@ from src.services.users import UserService
 
 class NavFrame(ctk.CTkFrame):
     def __init__(self, parent):
-        super().__init__(parent, corner_radius=0, fg_color=color.NAV)
+        super().__init__(parent, corner_radius=0, fg_color=color.BG_NAV)
         self.parent = parent
         self.load_fonts()
         self.load_user()

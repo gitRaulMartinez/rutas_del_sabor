@@ -6,6 +6,7 @@ HOVER_SECONDARY = "#77ADA3"
 
 BG_DARK = "#607D8B" #Gris Azulado
 BG_LIGHT = "#EEEEEE" #Gris claro
+BG_NAV = "#E4E4E4"
 
 BG_LOGIN = "#F1F1F1"
 NAV = "#F6F6F6"

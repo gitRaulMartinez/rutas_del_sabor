@@ -8,7 +8,7 @@ from src.widgets.dashboard.homeFrame import HomeFrame
 from src.widgets.dashboard.activityFrame import ActivityFrame
 from src.widgets.dashboard.planningFrame import PlanningFrame
 from src.widgets.dashboard.mapFrame import MapFrame
-from src.widgets.dashboard.loadingFrame import LoadingFrame
+from src.widgets.loadings.loadingFrame import LoadingFrame
 
 class Dashboard(ctk.CTkToplevel):
     def __init__(self,parent):
@@ -77,7 +77,7 @@ class Dashboard(ctk.CTkToplevel):
 
     def load_planning(self):
         self.planning_frame = PlanningFrame(self)
-        self.loading_frame.label_title.configure(text="Cargando Destinos...")
+        self.loading_frame.label_title.configure(text="Cargando Mapa...")
         thread = threading.Thread(target=self.load_map)
         thread.start()
 
@@ -85,7 +85,7 @@ class Dashboard(ctk.CTkToplevel):
         self.map_frame = MapFrame(self)
         self.loading_frame.grid_forget()
         self.structure()
-        self.nav_frame.grid(row=0, column=0, rowspan=2, padx=0, pady=0, sticky="sn")
+        self.nav_frame.grid(row=0, column=0, padx=0, pady=0, sticky="sn")
         self.home_frame.grid(row=0, column=1, padx=0, pady=0, sticky="snew")
 
     def logout(self):
