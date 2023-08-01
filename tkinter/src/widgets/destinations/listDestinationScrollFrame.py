@@ -15,13 +15,23 @@ class ListDestinationScrollFrame(ctk.CTkScrollableFrame):
         self.items = []
         self.maxcolumn = 4
         self.load_fonts()
-
+        self.load_empty()
 
     def load_fonts(self):
         self.title_font = font.title_font()
-        self.button_font = font.text_normal_bold_fond()
+        self.button_font = font.text_normal_bold_font()
+        self.text_normal = font.text_normal_font()
+
+    def load_empty(self):
+        self.grid_columnconfigure(0,weight=1)
+        self.list_empty = ctk.CTkLabel(self,height=100,text="No se encontraron destinos culinarios",fg_color="transparent",text_color=color.TEXT,font=self.text_normal)
+        self.list_empty.grid(row=0,column=0,sticky="ew")
 
     def add_item(self,culinary_destination):
+        if self.list_empty.winfo_manager():
+            self.list_empty.grid_forget()
+            self.grid_columnconfigure(0,weight=0)
+
         frame_item = ctk.CTkFrame(self,width=150, height=200,fg_color=color.NAV,border_width=1,corner_radius=10)
         frame_item.grid(row=len(self.items)//self.maxcolumn,column=len(self.items)%self.maxcolumn, padx=10, pady=15)
 
@@ -46,7 +56,15 @@ class ListDestinationScrollFrame(ctk.CTkScrollableFrame):
         frame_item.maximum_price_label = ctk.CTkLabel(frame_item,text="Hasta: $ "+str(culinary_destination.maximum_price), fg_color="transparent",text_color=color.TEXT)
         frame_item.maximum_price_label.grid(row=3,column=1,padx=10,pady=(5,5),sticky="w")
 
-        frame_item.details_button = ctk.CTkButton(frame_item,text="Mas detalles",command=lambda: self.command(culinary_destination._id),fg_color=color.SECONDARY,border_spacing=5,hover_color=color.HOVER_SECONDARY,font=self.button_font)
+        frame_item.details_button = ctk.CTkButton(frame_item,text="Mas detalles",command=lambda: self.command(culinary_destination._id),fg_color=color.SECONDARY,border_spacing=5,hover_color=color.HOVER_SECONDARY,font=self.button_font,text_color=color.TEXT_BUTTON)
         frame_item.details_button.grid(row=4,column=0,columnspan=2,padx=10,pady=(5,10),sticky="ew")
 
         self.items.append(frame_item)
+
+    def remove(self):
+        for item in self.items:
+            item.destroy()
+
+        self.items = []
+        self.grid_columnconfigure(0,weight=1)
+        self.list_empty.grid(row=0,column=0,sticky="ew")

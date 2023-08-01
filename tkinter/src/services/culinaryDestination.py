@@ -4,6 +4,7 @@ from src.request.activity import ActivityData
 from src.models.culinaryDestination import CulinaryDestination
 from src.models.location import Location
 from src.models.activity import Activity
+from src.utils.filter import filter_ingredient
 
 class CulinaryDestinationService:
     def __init__(self):
@@ -44,7 +45,21 @@ class CulinaryDestinationService:
 
         return culinary_destination
 
-
+    def filter(self,name=None,kitchen=None,ingredient=None,minimal_popularity=None,maximum_popularity=None,minimal_price=None,maximun_price=None):
+        culinary_destinations = self.get_info()
+        if name is not None:
+            culinary_destinations = list(filter(lambda value: name.lower() in value.name.lower(),culinary_destinations))
+        if kitchen is not None and kitchen != "Todos":
+            culinary_destinations = list(filter(lambda value: kitchen.lower() in value.type_of_kitchen.lower(),culinary_destinations))
+        if ingredient is not None:
+            culinary_destinations = list(filter(lambda value: filter_ingredient(value,ingredient),culinary_destinations))
+        if minimal_price is not None:
+            culinary_destinations = list(filter(lambda value: minimal_price < value.minimal_price,culinary_destinations))
+        if maximun_price is not None:
+            culinary_destinations = list(filter(lambda value: maximun_price > value.maximum_price,culinary_destinations))
+        if minimal_popularity is not None and maximum_popularity is not None:
+            culinary_destinations = list(filter(lambda value: minimal_popularity <= value.popularity <= maximum_popularity,culinary_destinations))
+        return culinary_destinations
 
         
                 

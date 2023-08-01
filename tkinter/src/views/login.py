@@ -30,8 +30,6 @@ class Login(ctk.CTk):
         self.dashboard = None
         self.notification = None
 
-        
-    
     def head(self):
         self.title("Rutas del sabor")
 
