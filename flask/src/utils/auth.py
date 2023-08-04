@@ -6,6 +6,7 @@ from src.config.config import JWT_SECRET_KEY
 def generate_token(user):
     # Crear el payload del token
     payload = {
+        '_id': user._id,
         'username': user.username,
         'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # El token expira en 30 minutos
     }

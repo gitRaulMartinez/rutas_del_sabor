@@ -27,3 +27,9 @@ def control_max_len(value):
     else:
         return False
 
+def control_name_route(value):
+    patron = r'^[a-zA-Z0-9\s]+$'
+    if not re.match(patron, value):
+        return True
+    else:
+        return False

@@ -9,6 +9,7 @@ from src.widgets.dashboard.activityFrame import ActivityFrame
 from src.widgets.dashboard.planningFrame import PlanningFrame
 from src.widgets.dashboard.mapFrame import MapFrame
 from src.widgets.loadings.loadingFrame import LoadingFrame
+from src.services.users import UserService
 
 class Dashboard(ctk.CTkToplevel):
     def __init__(self,parent):
@@ -21,6 +22,7 @@ class Dashboard(ctk.CTkToplevel):
         self.body()
 
         self.protocol("WM_DELETE_WINDOW", self.close_window)
+        self.user_services = UserService()
     
     def head(self):
         self.title("Rutas del sabor")
@@ -89,6 +91,7 @@ class Dashboard(ctk.CTkToplevel):
         self.home_frame.grid(row=0, column=1, padx=0, pady=0, sticky="snew")
 
     def logout(self):
+        self.user_services.logout()
         self.parent.show_window()
 
     def switch_frame(self, frame):

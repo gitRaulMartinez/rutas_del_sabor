@@ -35,7 +35,7 @@ class ActivityFrame(ctk.CTkFrame):
 
     def load_widgets(self):
         self.title_frame = ctk.CTkLabel(self,text="Actividades y eventos",text_color=color.TEXT,fg_color="transparent",font=self.title_font,anchor="w")
-        self.title_frame.grid(row=0,column=0,padx=110,pady=15,sticky="ew")
+        self.title_frame.grid(row=0,column=0,padx=15,pady=15,sticky="ew")
 
         self.search_frame = SearchActivityFrame(self)
         self.search_frame.grid(row=1,column=0,padx=15,pady=0,sticky="ew")

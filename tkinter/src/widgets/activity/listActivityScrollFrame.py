@@ -4,10 +4,6 @@ import src.utils.colors as color
 import src.utils.fonts as font
 import src.utils.date as date
 
-from PIL import Image
-from src.services.google_cloud import get_image
-from src.utils.images import get_image_path
-
 class ActivityScrollFrame(ctk.CTkScrollableFrame):
     def __init__(self, parent):
         super().__init__(parent,fg_color="transparent")

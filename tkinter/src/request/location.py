@@ -19,3 +19,6 @@ class LocationData:
                 print(response.json()['message'])
                 self._data = None
         return self._data
+    
+    def logout(self):
+        self._data = None

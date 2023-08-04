@@ -12,7 +12,6 @@ class NavFrame(ctk.CTkFrame):
     def __init__(self, parent):
         super().__init__(parent, corner_radius=0, fg_color=color.BG_NAV)
         self.parent = parent
-        self.load_fonts()
         self.load_user()
         self.load_images()
         self.current_frame = "home"
@@ -22,28 +21,28 @@ class NavFrame(ctk.CTkFrame):
         self.actions()
 
     def head(self):
-        self.label_title = ctk.CTkLabel(self, text=" Rutas del sabor", padx=5, pady=5, text_color=color.TEXT, fg_color="transparent", font=self.logo_font,image=self.logo_icon, compound="left")
+        self.label_title = ctk.CTkLabel(self, text=" Rutas del sabor", padx=5, pady=5, text_color=color.TEXT, fg_color="transparent", font=font.text_hight_bold_font(),image=self.logo_icon, compound="left")
         self.label_title.grid(row=0, column=0, padx=15, pady=(15,10))
 
     def buttons_nav(self):
-        self.home_button = ctk.CTkButton(self, corner_radius=0, height=40, border_spacing=15, text="Inicio", text_color=color.TEXT_LIGHT ,fg_color=color.PRIMARY, hover_color=color.PRIMARY, command=lambda: self.switch_frame("home"), font=self.nav_font, image=self.home_light_icon, compound="left", anchor="w")
+        self.home_button = ctk.CTkButton(self, corner_radius=0, height=40, border_spacing=15, text="Inicio", text_color=color.TEXT_LIGHT ,fg_color=color.PRIMARY, hover_color=color.PRIMARY, command=lambda: self.switch_frame("home"), font=font.text_normal_font(), image=self.home_light_icon, compound="left", anchor="w")
         self.home_button.grid(row=1, column=0, sticky="ew")
 
-        self.activity_button = ctk.CTkButton(self, corner_radius=0, height=40, border_spacing=15, text="Actividades", text_color=color.TEXT, fg_color="transparent", hover_color=color.HOVER_NAV, command=lambda: self.switch_frame("activity"), font=self.nav_font, image=self.activity_icon, compound="left", anchor="w")
+        self.activity_button = ctk.CTkButton(self, corner_radius=0, height=40, border_spacing=15, text="Actividades", text_color=color.TEXT, fg_color="transparent", hover_color=color.HOVER_NAV, command=lambda: self.switch_frame("activity"), font=font.text_normal_font(), image=self.activity_icon, compound="left", anchor="w")
         self.activity_button.grid(row=2, column=0, sticky="ew")
 
-        self.planning_button = ctk.CTkButton(self, corner_radius=0, height=40, border_spacing=15, text="Planificación", text_color=color.TEXT, fg_color="transparent", hover_color=color.HOVER_NAV, command=lambda: self.switch_frame("planning"), font=self.nav_font, image=self.planning_icon, compound="left", anchor="w")
+        self.planning_button = ctk.CTkButton(self, corner_radius=0, height=40, border_spacing=15, text="Planificación", text_color=color.TEXT, fg_color="transparent", hover_color=color.HOVER_NAV, command=lambda: self.switch_frame("planning"), font=font.text_normal_font(), image=self.planning_icon, compound="left", anchor="w")
         self.planning_button.grid(row=3, column=0, sticky="ew")
 
-        self.map_button = ctk.CTkButton(self, corner_radius=0, height=40, border_spacing=15, text="Mapa", text_color=color.TEXT, fg_color="transparent", hover_color=color.HOVER_NAV, command=lambda: self.switch_frame("map"), font=self.nav_font, image=self.map_icon, compound="left", anchor="w")
+        self.map_button = ctk.CTkButton(self, corner_radius=0, height=40, border_spacing=15, text="Mapa", text_color=color.TEXT, fg_color="transparent", hover_color=color.HOVER_NAV, command=lambda: self.switch_frame("map"), font=font.text_normal_font(), image=self.map_icon, compound="left", anchor="w")
         self.map_button.grid(row=4, column=0, sticky="ew")
 
     def actions(self):
         self.grid_rowconfigure(5, weight=1)
 
-        self.label_title = ctk.CTkLabel(self, text=self.user.name+" "+self.user.lastname, padx=5, pady=5, text_color=color.TEXT, fg_color="transparent", font=self.logo_font,image=self.user_icon, compound="left")
+        self.label_title = ctk.CTkLabel(self, text=self.user.name+" "+self.user.lastname, padx=5, pady=5, text_color=color.TEXT, fg_color="transparent", font=font.text_normal_bold_font(),image=self.user_icon, compound="left")
         self.label_title.grid(row=6, column=0, padx=15, pady=5, sticky="ew")
-        self.logout_button = ctk.CTkButton(self, height=20, text="Cerrar Sesión", border_spacing=10, text_color=color.TEXT_BUTTON, fg_color=color.SECONDARY,hover_color=color.HOVER_SECONDARY, command=self.logout, font=self.button_font, image=self.logout_icon, compound="left")
+        self.logout_button = ctk.CTkButton(self, height=20, text="Cerrar Sesión", border_spacing=10, text_color=color.TEXT_BUTTON, fg_color=color.SECONDARY,hover_color=color.HOVER_SECONDARY, command=self.logout,image=self.logout_icon, compound="left",font=font.text_small_bold_font())
         self.logout_button.grid(row=7, column=0,padx=15,pady=(0,15), sticky="ews")
 
     def load_images(self):
@@ -74,8 +73,3 @@ class NavFrame(ctk.CTkFrame):
 
     def logout(self):
         self.parent.logout()
-
-    def load_fonts(self):
-        self.logo_font = font.logo_font()
-        self.nav_font = font.nav_font()
-        self.button_font = font.button_font()

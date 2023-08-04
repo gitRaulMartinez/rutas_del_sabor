@@ -8,7 +8,7 @@ activity_bp = Blueprint('activity', __name__, url_prefix='/activities')
 
 # Registramos usuario
 @activity_bp.route('/create', methods=['POST'])
-def create_culinary_destination():
+def create_activity():
     new_activity = request.json
     uid = str(uuid.uuid4())
     name = new_activity.get('name')

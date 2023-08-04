@@ -4,20 +4,21 @@ import tkinter as tk
 import src.services.auth as auth_service
 import src.utils.form_control as form_control
 import src.utils.colors as color
+import src.utils.fonts as font
 
 class RegisterFrame(ctk.CTkFrame):
     def __init__(self, parent):
         super().__init__(parent, fg_color=color.BG_LOGIN, bg_color=color.BG_LIGHT ,border_width=1, corner_radius=10)
         self.parent = parent
 
-        self.label_title = ctk.CTkLabel(self,text='Registrarse',fg_color="transparent",font=ctk.CTkFont(size=25,weight='bold'))
+        self.label_title = ctk.CTkLabel(self,text='Registrarse',fg_color="transparent",font=font.text_ultra_bold_font(),text_color=color.TEXT)
         self.label_title.grid(row=1, column=0, padx=15, pady=(20,20), sticky="we")
 
         self.form()
         self.actions()
 
     def form(self):
-        self.label_username = ctk.CTkLabel(self,text='Usuario:',fg_color="transparent",font=ctk.CTkFont(size=16))
+        self.label_username = ctk.CTkLabel(self,text='Usuario:',fg_color="transparent",font=font.text_normal_font(),text_color=color.TEXT)
         self.label_username.grid(row=2, column=0, padx=15, pady=(10,0), sticky="w")
 
         self.entry_username = ctk.CTkEntry(self, placeholder_text="Usuario",fg_color="transparent", width=350, height=40, font=ctk.CTkFont(size=14), border_width=1)
@@ -26,7 +27,7 @@ class RegisterFrame(ctk.CTkFrame):
         self.label_error_username = ctk.CTkLabel(self,text='',fg_color="transparent",font=ctk.CTkFont(size=12),text_color="red")
         self.label_error_username.grid(row=4, column=0, padx=15, pady=(0,0), sticky="w")
 
-        self.label_password = ctk.CTkLabel(self,text='Contraseña:',fg_color="transparent",font=ctk.CTkFont(size=16))
+        self.label_password = ctk.CTkLabel(self,text='Contraseña:',fg_color="transparent",font=font.text_normal_font(),text_color=color.TEXT)
         self.label_password.grid(row=5, column=0, padx=15, pady=(2,0), sticky="w")
 
         self.entry_password = ctk.CTkEntry(self, placeholder_text="Contraseña",fg_color="transparent", width=350, height=40, font=ctk.CTkFont(size=14) ,show="*", border_width=1)
@@ -35,7 +36,7 @@ class RegisterFrame(ctk.CTkFrame):
         self.label_error_password = ctk.CTkLabel(self,text='',fg_color="transparent",font=ctk.CTkFont(size=12),text_color="red")
         self.label_error_password.grid(row=7, column=0, padx=15, pady=(0,0), sticky="w")
 
-        self.label_name = ctk.CTkLabel(self,text='Nombre:',fg_color="transparent",font=ctk.CTkFont(size=16))
+        self.label_name = ctk.CTkLabel(self,text='Nombre:',fg_color="transparent",font=font.text_normal_font(),text_color=color.TEXT)
         self.label_name.grid(row=8, column=0, padx=15, pady=(2,0), sticky="w")
 
         self.entry_name = ctk.CTkEntry(self, placeholder_text="Nombre",fg_color="transparent", width=350, height=40, font=ctk.CTkFont(size=14), border_width=1)
@@ -44,7 +45,7 @@ class RegisterFrame(ctk.CTkFrame):
         self.label_error_name = ctk.CTkLabel(self,text='',fg_color="transparent",font=ctk.CTkFont(size=12),text_color="red")
         self.label_error_name.grid(row=10, column=0, padx=15, pady=(0,0), sticky="w")
 
-        self.label_lastname = ctk.CTkLabel(self,text='Apellido:',fg_color="transparent",font=ctk.CTkFont(size=16))
+        self.label_lastname = ctk.CTkLabel(self,text='Apellido:',fg_color="transparent",font=font.text_normal_font(),text_color=color.TEXT)
         self.label_lastname.grid(row=11, column=0, padx=15, pady=(2,0), sticky="w")
 
         self.entry_lastname = ctk.CTkEntry(self, placeholder_text="Apellido",fg_color="transparent", width=350, height=40, font=ctk.CTkFont(size=14), border_width=1)
@@ -54,10 +55,10 @@ class RegisterFrame(ctk.CTkFrame):
         self.label_error_lastname.grid(row=13, column=0, padx=15, pady=(0,0), sticky="w")
 
     def actions(self):
-        self.button_register = ctk.CTkButton(self, text="Registrarme", text_color=color.TEXT_BUTTON,fg_color=color.PRIMARY,hover_color=color.HOVER_PRIMARY,command=self.submit, width=350, border_spacing=10, font=ctk.CTkFont(size=16,weight='bold'))
+        self.button_register = ctk.CTkButton(self, text="Registrarme", text_color=color.TEXT_BUTTON,fg_color=color.PRIMARY,hover_color=color.HOVER_PRIMARY,command=self.submit, width=350, border_spacing=10, font=font.text_normal_bold_font())
         self.button_register.grid(row=14, column=0, padx=15, pady=(10,5))
 
-        self.button_login = ctk.CTkButton(self, text="Volver al Inicio", text_color=color.TEXT_BUTTON,fg_color=color.SECONDARY,hover_color=color.HOVER_SECONDARY,command=self.login, width=350, border_spacing=10, font=ctk.CTkFont(size=16,weight='bold'))
+        self.button_login = ctk.CTkButton(self, text="Volver al Inicio", text_color=color.TEXT_BUTTON,fg_color=color.SECONDARY,hover_color=color.HOVER_SECONDARY,command=self.login, width=350, border_spacing=10, font=font.text_normal_bold_font())
         self.button_login.grid(row=15, column=0, padx=15, pady=(5,15))
 
     def submit(self):

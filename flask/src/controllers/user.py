@@ -28,5 +28,17 @@ def getUserByUsername(username):
                 return User(**user_data)
     return None
 
+def addRoute(user_id,route):
+    user_ref = db.reference('/users').child(user_id)
+    user = user_ref.get()
+    if user is not None:
+        route_history = user.get('route_history', [])
+        route_history.append(route)
+
+        user['route_history'] = route_history
+        user_ref.set(user)
+            
+
+
 
 

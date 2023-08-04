@@ -42,11 +42,11 @@ class ListDestinationScrollFrame(ctk.CTkScrollableFrame):
         frame_item.title_label = ctk.CTkLabel(frame_item,text=culinary_destination.name, fg_color="transparent",width=200,text_color=color.TEXT)
         frame_item.title_label.grid(row=1,column=0,columnspan=2,padx=10,pady=(5,5),sticky="ew")
 
-        frame_item.start_image = ctk.CTkImage(Image.open(get_image_path("start_light.png")),size=(20,20))
+        frame_item.start_image = ctk.CTkImage(Image.open(get_image_path("start.png")),size=(20,20))
         frame_item.popularity_label = ctk.CTkLabel(frame_item,text=": "+str(culinary_destination.popularity), fg_color="transparent",image=frame_item.start_image,compound="left",text_color=color.TEXT)
         frame_item.popularity_label.grid(row=2,column=0,padx=10,pady=(5,5),sticky="w")
 
-        frame_item.location_image = ctk.CTkImage(Image.open(get_image_path("map_light.png")),size=(20,20))
+        frame_item.location_image = ctk.CTkImage(Image.open(get_image_path("map.png")),size=(20,20))
         frame_item.location_label = ctk.CTkLabel(frame_item,text=": "+culinary_destination.location_id.short_country, fg_color="transparent",image=frame_item.location_image,compound="left",text_color=color.TEXT)
         frame_item.location_label.grid(row=2,column=1,padx=10,pady=(5,5),sticky="w")
 

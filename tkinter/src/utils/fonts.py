@@ -22,8 +22,17 @@ def nav_font():
 def button_font():
     return ctk.CTkFont(family="Roboto Condensed",size=16,weight="bold")
 
+def text_ultra_font():
+    return ctk.CTkFont(family="Open Sans",size=24,weight="normal")
+
+def text_ultra_bold_font():
+    return ctk.CTkFont(family="Open Sans",size=24,weight="bold")
+
 def text_hight_font():
     return ctk.CTkFont(family="Open Sans",size=18,weight="normal")
+
+def text_hight_bold_font():
+    return ctk.CTkFont(family="Open Sans",size=18,weight="bold")
 
 def text_normal_font():
     return ctk.CTkFont(family="Open Sans",size=16,weight="normal")
