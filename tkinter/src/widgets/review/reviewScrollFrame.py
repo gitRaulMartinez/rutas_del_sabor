@@ -33,23 +33,23 @@ class ReviewScrollFrame(ctk.CTkScrollableFrame):
         frame_item.grid_columnconfigure((0,1),weight=1)
 
         frame_item.user_label = ctk.CTkLabel(frame_item,text=f"Usuario: {review.user.username}",fg_color="transparent",text_color=color.TEXT,font=font.text_normal_font(),anchor="w")
-        frame_item.user_label.grid(row=0,column=0,padx=10,pady=(10,5),sticky="w")
+        frame_item.user_label.grid(row=0,column=0,padx=10,pady=(10,3),sticky="w")
 
         frame_item.destination_label = ctk.CTkLabel(frame_item,text=f"Destino culinario: {review.destination.name}",fg_color="transparent",text_color=color.TEXT,font=font.text_normal_font(),anchor="w")
-        frame_item.destination_label.grid(row=0,column=1,padx=10,pady=(10,5),sticky="e")
+        frame_item.destination_label.grid(row=0,column=1,padx=10,pady=(10,3),sticky="e")
 
         frame_item.score_frame = ScoreFrame(frame_item,review.score)
-        frame_item.score_frame.grid(row=1,column=0,padx=10,pady=10,sticky="w")
+        frame_item.score_frame.grid(row=1,column=0,padx=10,pady=3,sticky="w")
 
         frame_item.animo_image = ctk.CTkImage(Image.open(get_image_path("positive.png")),size=(20,20)) if review.animo == 'positive' else ctk.CTkImage(Image.open(get_image_path("negative.png")),size=(20,20))
         frame_item.animo_label = ctk.CTkLabel(frame_item,image=frame_item.animo_image,text="")
-        frame_item.animo_label.grid(row=1,column=1,padx=10,pady=10,sticky="e")
+        frame_item.animo_label.grid(row=1,column=1,padx=10,pady=3,sticky="e")
 
         frame_item.comment_label = ctk.CTkLabel(frame_item,text="Comentario:",fg_color="transparent",text_color=color.TEXT,font=font.text_normal_font(),anchor="w")
-        frame_item.comment_label.grid(row=2,column=0,padx=10,pady=10,columnspan=2,sticky="w")
+        frame_item.comment_label.grid(row=2,column=0,padx=10,pady=3,columnspan=2,sticky="w")
 
         frame_item.comment_text = ctk.CTkLabel(frame_item,text=f"{review.comment}",fg_color="transparent",text_color=color.TEXT,font=font.text_normal_font(),anchor="w")
-        frame_item.comment_text.grid(row=3,column=0,padx=10,pady=(2,10),columnspan=2,sticky="ew")
+        frame_item.comment_text.grid(row=3,column=0,padx=10,pady=(3,10),columnspan=2,sticky="ew")
 
         self.items.append(frame_item)
 

@@ -54,6 +54,9 @@ class ListDestinationYScrollFrame(ctk.CTkScrollableFrame):
         elif self.action == "review":
             frame_item.check_button = ctk.CTkButton(frame_item,fg_color=color.PRIMARY,hover_color=color.HOVER_PRIMARY,text="Hacer review",text_color=color.TEXT_BUTTON,font=font.text_small_bold_font(),height=40,command=lambda: self.parent.open_create(culinary_destination._id))
             frame_item.check_button.grid(row=0,column=3,rowspan=2,padx=10,pady=(5,10),sticky="e")
+        elif self.action == "map":
+            frame_item.check_button = ctk.CTkButton(frame_item,fg_color=color.PRIMARY,hover_color=color.HOVER_PRIMARY,text="Ver ubicación",text_color=color.TEXT_BUTTON,font=font.text_small_bold_font(),height=40,command=lambda: self.parent.location(culinary_destination))
+            frame_item.check_button.grid(row=0,column=3,rowspan=2,padx=10,pady=(5,10),sticky="e")
 
         self.items.append(frame_item)
 

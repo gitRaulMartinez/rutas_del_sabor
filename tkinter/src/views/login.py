@@ -32,8 +32,7 @@ class Login(ctk.CTk):
 
     def head(self):
         self.title("Rutas del sabor")
-
-        image_path = get_image_path("hola.jpg")
+        self.iconbitmap(get_image_path("logo.ico"))
 
     def position(self):
         # Obtener las dimensiones de la pantalla

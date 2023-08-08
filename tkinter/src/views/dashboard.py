@@ -14,6 +14,8 @@ from src.widgets.loadings.loadingFrame import LoadingFrame
 
 from src.services.users import UserService
 
+from src.utils.images import get_image_path
+
 class Dashboard(ctk.CTkToplevel):
     def __init__(self,parent):
         super().__init__()
@@ -29,6 +31,7 @@ class Dashboard(ctk.CTkToplevel):
     
     def head(self):
         self.title("Rutas del sabor")
+        self.iconbitmap(get_image_path("logo.ico"))
 
     def position(self):
         # Obtener las dimensiones de la pantalla

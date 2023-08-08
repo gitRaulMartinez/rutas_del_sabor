@@ -1,15 +1,10 @@
-# rutas_del_sabor
-Proyecto Integrador / Mil Programadores Salteños - Python
+# Rutas del sabor
 
-### Flask (Backend)
+Proyecto Integrador de Mil Programadores Salteños con Python
 
-#### Librerias
+## Login y registro
 
-```http
-  pip install Flask
-  pip install firebase_admin
-  pip install PyJWT
-  pip install python-dotenv
-  pip install bcrypt
-```
+![](https://storage.googleapis.com/rutas-del-sabor/documentation-github/login.png)
+![](https://storage.googleapis.com/rutas-del-sabor/documentation-github/register.png)
+
 

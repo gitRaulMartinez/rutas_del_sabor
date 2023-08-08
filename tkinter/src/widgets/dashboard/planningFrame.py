@@ -30,7 +30,7 @@ class PlanningFrame(ctk.CTkFrame):
 
     def load_widgets(self):
         self.title_frame = TitleFrame(self,command=self.open_create,routes=self.routes)
-        self.title_frame.grid(row=0,column=0,padx=15,pady=15,sticky="ew")
+        self.title_frame.grid(row=0,column=0,padx=10,pady=10,sticky="ew")
 
         self.title_list_frame = TitleListFrame(self)
         self.title_list_frame.grid(row=1,column=0,padx=(15,26),pady=5,sticky="ew")
@@ -114,5 +114,5 @@ class TitleFrame(ctk.CTkFrame):
         self.title_label.grid(row=0,column=0,padx=(10,2),pady=10,sticky="ew")
 
         if len(self.routes) > 0: 
-            self.create_button = ctk.CTkButton(self,text="Crear ruta",text_color=color.TEXT_BUTTON,font=font.text_small_bold_font(),corner_radius=100,height=30,fg_color=color.PRIMARY,hover_color=color.HOVER_PRIMARY,command=self.command)
+            self.create_button = ctk.CTkButton(self,text="Crear ruta",text_color=color.TEXT_BUTTON,font=font.text_small_bold_font(),height=30,fg_color=color.PRIMARY,hover_color=color.HOVER_PRIMARY,command=self.command)
             self.create_button.grid(row=0,column=1,padx=(2,10),pady=10,sticky="e")

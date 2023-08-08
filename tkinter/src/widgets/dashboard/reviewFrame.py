@@ -26,14 +26,14 @@ class ReviewFrame(ctk.CTkFrame):
         self.my_reviews = self.review_services.get_my_reviews()
 
     def load_widgets(self):
-        self.title_label = ctk.CTkLabel(self,text="Mis reviews",text_color=color.TEXT,font=font.text_ultra_bold_font(),anchor="w")
-        self.title_label.grid(row=0,column=0,padx=10,pady=20,sticky="w")
+        self.title_label = ctk.CTkLabel(self,text="Mis reviews",text_color=color.TEXT,font=font.text_hight_bold_font(),anchor="w")
+        self.title_label.grid(row=0,column=0,padx=10,pady=10,sticky="w")
 
-        self.create_review_button = ctk.CTkButton(self,text="Crear review",fg_color=color.SECONDARY,hover_color=color.HOVER_SECONDARY,font=font.text_small_bold_font(),border_spacing=5,command=self.create_review,text_color=color.TEXT_BUTTON,corner_radius=100)
-        self.create_review_button.grid(row=0,column=1,padx=10,pady=20,sticky="e")
+        self.create_review_button = ctk.CTkButton(self,text="Crear review",fg_color=color.PRIMARY,hover_color=color.HOVER_PRIMARY,font=font.text_small_bold_font(),border_spacing=5,command=self.create_review,text_color=color.TEXT_BUTTON,height=30)
+        self.create_review_button.grid(row=0,column=1,padx=10,pady=10,sticky="e")
 
         self.list_reviews_frame = ReviewScrollFrame(self)
-        self.list_reviews_frame.grid(row=1,column=0,padx=(10,2),pady=10,columnspan=2,sticky="nsew")
+        self.list_reviews_frame.grid(row=1,column=0,padx=(10,2),pady=(5,10),columnspan=2,sticky="nsew")
 
         for review in self.my_reviews:
             self.list_reviews_frame.add_item(review)
