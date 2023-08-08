@@ -55,10 +55,10 @@ class RegisterFrame(ctk.CTkFrame):
         self.label_error_lastname.grid(row=13, column=0, padx=15, pady=(0,0), sticky="w")
 
     def actions(self):
-        self.button_register = ctk.CTkButton(self, text="Registrarme", text_color=color.TEXT_BUTTON,fg_color=color.PRIMARY,hover_color=color.HOVER_PRIMARY,command=self.submit, width=350, border_spacing=10, font=font.text_normal_bold_font())
+        self.button_register = ctk.CTkButton(self, text="Registrarme", text_color=color.TEXT_BUTTON,fg_color=color.PRIMARY,hover_color=color.HOVER_PRIMARY,command=self.submit, width=350, border_spacing=8, font=font.text_normal_bold_font())
         self.button_register.grid(row=14, column=0, padx=15, pady=(10,5))
 
-        self.button_login = ctk.CTkButton(self, text="Volver al Inicio", text_color=color.TEXT_BUTTON,fg_color=color.SECONDARY,hover_color=color.HOVER_SECONDARY,command=self.login, width=350, border_spacing=10, font=font.text_normal_bold_font())
+        self.button_login = ctk.CTkButton(self, text="Volver al Inicio", text_color=color.TEXT_BUTTON,fg_color=color.SECONDARY,hover_color=color.HOVER_SECONDARY,command=self.login, width=350, border_spacing=8, font=font.text_normal_bold_font())
         self.button_login.grid(row=15, column=0, padx=15, pady=(5,15))
 
     def submit(self):

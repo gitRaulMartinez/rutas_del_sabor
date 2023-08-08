@@ -14,8 +14,8 @@ class UserService:
         self.location_data = LocationData()
         self.route_visit_data = RouteVisitData()
 
-    def get_user(self):
-        response_user = self.user_data.get_data(get_token())
+    def get_my_user(self):
+        response_user = self.user_data.get_my_user(get_token())
         user = User(**response_user)
         return user
     

@@ -1,10 +1,13 @@
 from src.request.culinaryDestination import CulinaryDestinationData
 from src.request.location import LocationData
 from src.request.activity import ActivityData
+
 from src.models.culinaryDestination import CulinaryDestination
 from src.models.location import Location
 from src.models.activity import Activity
+
 from src.utils.filter import filter_ingredient
+from src.utils.session import get_token
 
 class CulinaryDestinationService:
     def __init__(self):
@@ -60,6 +63,12 @@ class CulinaryDestinationService:
         if minimal_popularity is not None and maximum_popularity is not None:
             culinary_destinations = list(filter(lambda value: minimal_popularity <= value.popularity <= maximum_popularity,culinary_destinations))
         return culinary_destinations
+
+
+
+        
+
+
 
         
                 

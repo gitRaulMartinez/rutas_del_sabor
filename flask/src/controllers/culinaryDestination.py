@@ -12,3 +12,10 @@ def getCulinaryDestinations():
         return []
     else:
         return [CulinaryDestination(**culinary_destination) for culinary_destination in culinary_destinations.values()]
+    
+def updatePopularity(culinary_destination_id,new_popularity):
+    culinary_destination = db.reference('/culinary_destinations').child(culinary_destination_id).get()
+    culinary_destination['popularity'] = new_popularity
+    db.reference('/culinary_destinations').child(culinary_destination_id).set(culinary_destination)
+
+

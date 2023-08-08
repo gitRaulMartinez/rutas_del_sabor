@@ -8,6 +8,7 @@ from src.services.google_cloud import get_image
 from src.utils.images import get_image_path
 
 from src.services.culinaryDestination import CulinaryDestinationService
+from src.services.routeVisit import RouteVisitServices
 
 class DestinationFrame(ctk.CTkFrame):
     def __init__(self, parent, culinary_destination_id=None,command=None):
@@ -99,4 +100,9 @@ class IngredientsFrame(ctk.CTkFrame):
         ingredient_label = ctk.CTkLabel(self,text=f"{ingredient}",fg_color=color.SECONDARY,text_color=color.TEXT_BUTTON,corner_radius=30)
         ingredient_label.grid(row=0,column=len(self.ingredients)+1,padx=5,pady=5,sticky="e")
         self.ingredients.append(ingredient_label)
+
+class ReviewsDestinationFrame(ctk.CTkFrame):
+    def __init__(self,parent):
+        super().__init__(parent,fg_color="transparent")
+
 

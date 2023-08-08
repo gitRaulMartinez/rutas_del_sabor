@@ -29,10 +29,10 @@ class LoginFrame(ctk.CTkFrame):
         self.label_response = ctk.CTkLabel(self,text="", height=40, fg_color="transparent",font=font.text_normal_font(),text_color=color.TEXT)
         self.label_response.grid(row=6, column=0, padx=15, pady=(0,5), sticky="we")
 
-        self.button_login = ctk.CTkButton(self, text="Iniciar Sesión", text_color=color.TEXT_BUTTON, fg_color=color.PRIMARY,hover_color=color.HOVER_PRIMARY,command=self.submit, width=350, border_spacing=10, font=font.text_normal_bold_font())
+        self.button_login = ctk.CTkButton(self, text="Iniciar Sesión", text_color=color.TEXT_BUTTON, fg_color=color.PRIMARY,hover_color=color.HOVER_PRIMARY,command=self.submit, width=350, border_spacing=8, font=font.text_normal_bold_font())
         self.button_login.grid(row=7, column=0, padx=15, pady=(10,5))
 
-        self.button_register = ctk.CTkButton(self, text="Registrarse", text_color=color.TEXT_BUTTON, fg_color=color.SECONDARY,hover_color=color.HOVER_SECONDARY, command=self.register, width=350, border_spacing=10, font=font.text_normal_bold_font())
+        self.button_register = ctk.CTkButton(self, text="Registrarse", text_color=color.TEXT_BUTTON, fg_color=color.SECONDARY,hover_color=color.HOVER_SECONDARY, command=self.register, width=350, border_spacing=8, font=font.text_normal_bold_font())
         self.button_register.grid(row=8, column=0, padx=15, pady=(5,15))
 
         # Quitar luego

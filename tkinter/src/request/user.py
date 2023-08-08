@@ -9,8 +9,18 @@ class UserData:
             cls._instance = super(UserData, cls).__new__(cls)
             cls._instance._data = None
         return cls._instance
+    
+    def get_data(self):
+        if self._data is None:
+            response = requests.get(f"{URL_SERVER}/users/")
+            if response.status_code != 500:
+                self._data = response.json()
+            else:
+                print(response.json()['message'])
+                self._data = None
+        return self._data
 
-    def get_data(self,token):
+    def get_my_user(self,token):
         header = {'Authorization': 'Bearer '+token}
         if self._data is None:
             response = requests.get(f"{URL_SERVER}/users/myuser",headers=header)

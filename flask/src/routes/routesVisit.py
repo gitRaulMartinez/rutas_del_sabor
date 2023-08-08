@@ -30,8 +30,8 @@ def create_route_visit():
 def get_route_visit():
     try:
         user = userController.getUser(g.user.get('_id'))
-        activities = routeVisitController.getMyRoutesVisit(user.route_history)
-        return jsonify([activity.__dict__ for activity in activities]), 200
+        my_routes_visit = routeVisitController.getMyRoutesVisit(user.route_history)
+        return jsonify([route.__dict__ for route in my_routes_visit]), 200
     except Exception as e:
         return jsonify({'message': f'Error al obtener rutas de visita {e}'}), 500
 
@@ -39,7 +39,7 @@ def get_route_visit():
 @route_visit_bp.route('/', methods=['GET'])
 def get_routes_visit():
     try:
-        activities = routeVisitController.getRoutesVisit()
-        return jsonify([activity.__dict__ for activity in activities]), 200
+        routes_visit = routeVisitController.getRoutesVisit()
+        return jsonify([route_visit.__dict__ for route_visit in routes_visit]), 200
     except Exception as e:
         return jsonify({'message': f'Error al obtener rutas de visita {e}'}), 500

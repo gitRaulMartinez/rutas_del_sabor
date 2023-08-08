@@ -7,8 +7,11 @@ from src.widgets.nav.navFrame import NavFrame
 from src.widgets.dashboard.homeFrame import HomeFrame
 from src.widgets.dashboard.activityFrame import ActivityFrame
 from src.widgets.dashboard.planningFrame import PlanningFrame
+from src.widgets.dashboard.reviewFrame import ReviewFrame
 from src.widgets.dashboard.mapFrame import MapFrame
+
 from src.widgets.loadings.loadingFrame import LoadingFrame
+
 from src.services.users import UserService
 
 class Dashboard(ctk.CTkToplevel):
@@ -79,6 +82,12 @@ class Dashboard(ctk.CTkToplevel):
 
     def load_planning(self):
         self.planning_frame = PlanningFrame(self)
+        self.loading_frame.label_title.configure(text="Cargando Reviews...")
+        thread = threading.Thread(target=self.load_review)
+        thread.start()
+
+    def load_review(self):
+        self.review_frame = ReviewFrame(self)
         self.loading_frame.label_title.configure(text="Cargando Mapa...")
         thread = threading.Thread(target=self.load_map)
         thread.start()
@@ -107,6 +116,10 @@ class Dashboard(ctk.CTkToplevel):
             self.planning_frame.grid(row=0, column=1, padx=0, pady=0, sticky="snew")
         else:
             self.planning_frame.grid_forget()
+        if frame == "review":
+            self.review_frame.grid(row=0, column=1, padx=0, pady=0, sticky="snew")
+        else:
+            self.review_frame.grid_forget()
         if frame == "map":
             self.map_frame.grid(row=0, column=1, padx=0, pady=0, sticky="snew")
         else:
