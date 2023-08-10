@@ -1,0 +1,12 @@
+#Para el servidor
+Flask==2.3.2
+firebase-admin==6.2.0
+PyJWT==2.8.0
+python-dotenv==1.0.0
+bcrypt==4.0.1
+gunicorn==21.2.0
+flask_cors==4.0.0
+#Para lado Visual
+customtkinter==5.2.0
+pillow==10.0.0
+tkintermapview==1.29
