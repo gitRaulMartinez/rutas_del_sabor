@@ -18,7 +18,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copia la aplicación Flask al directorio de trabajo en el contenedor
-COPY /app/flask /app
+COPY /flask /app
 
 # Expone el puerto 5000 (puedes cambiarlo según tus necesidades)
 EXPOSE 5000
